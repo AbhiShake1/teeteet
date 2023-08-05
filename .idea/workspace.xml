@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1d3bc6f-1715-41ec-a2f7-d48be4329d3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/packages/db/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/packages/db/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/config/tailwind/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/tailwind/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1691202810631</updated>
       <workItem from="1691202811896" duration="1192000" />
-      <workItem from="1691205677929" duration="1519000" />
+      <workItem from="1691205677929" duration="3513000" />
     </task>
     <servers />
   </component>
