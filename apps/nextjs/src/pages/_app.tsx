@@ -1,53 +1,25 @@
 // src/pages/_app.tsx
 import "../styles/globals.css";
 import type {AppType} from "next/app";
-import {ClerkProvider, useAuth, UserButton} from "@clerk/nextjs";
+import {ClerkProvider} from "@clerk/nextjs";
 import {trpc} from "../utils/trpc";
 import {TNavigationMenu} from "../components/TNavigationMenu";
 import React from "react";
 import {TThemeProvider} from "../components/TThemeProvider";
 import {TDarkModeToggle} from "../components/TDarkModeToggle";
-import {useTheme} from "next-themes"
-import {dark} from '@clerk/themes';
-
-type AppProps = {
-    children: React.ReactNode
-}
 
 const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
     return (
         <TThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <App>
+            <ClerkProvider {...pageProps}>
+                <nav className='flex flex-row space-x-4 items-center justify-center my-4 py-4 mx-8'>
+                    <TNavigationMenu/>
+                    <TDarkModeToggle className='fixed right-16'/>
+                </nav>
                 <Component {...pageProps} />
-            </App>
+            </ClerkProvider>
         </TThemeProvider>
     );
-}
-
-const App: React.FunctionComponent<AppProps> = ({children}) => {
-    const {theme} = useTheme()
-    console.log(theme)
-
-    return (
-        <ClerkProvider appearance={{
-            baseTheme: theme == 'dark' ? dark : undefined,
-        }}>
-            <TNavBar/>
-            {children}
-        </ClerkProvider>
-    )
-}
-
-const TNavBar = () => {
-    const {isSignedIn} = useAuth()
-
-    return (
-        <nav className='flex flex-row items-center justify-center my-4 py-4 mx-8'>
-            <TNavigationMenu/>
-            <div className='fixed right-16'>{isSignedIn && <UserButton/>}</div>
-            <TDarkModeToggle className='fixed right-36'/>
-        </nav>
-    )
-}
+};
 
 export default trpc.withTRPC(MyApp);
