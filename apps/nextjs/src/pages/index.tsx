@@ -12,6 +12,7 @@ const Home: NextPage = () => {
         })
         return () => navigator.geolocation.clearWatch(1)
     }, [])
+    
     return (
         <>
             <Head>
