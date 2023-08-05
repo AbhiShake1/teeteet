@@ -1,12 +1,14 @@
 // src/pages/_app.tsx
-import "@acme/components/src/styles/globals.css";
+import "../styles/globals.css";
 import type {AppType} from "next/app";
 import {ClerkProvider, useAuth, UserButton} from "@clerk/nextjs";
 import {trpc} from "../utils/trpc";
 import React from "react";
 import {useTheme} from "next-themes"
 import {dark} from '@clerk/themes';
-import {TDarkModeToggle, TNavigationMenu, TThemeProvider} from "@acme/components";
+import {TThemeProvider} from "../components/TThemeProvider";
+import {TNavigationMenu} from "../components/TNavigationMenu";
+import {TDarkModeToggle} from "../components/TDarkModeToggle";
 
 type AppProps = {
     children: React.ReactNode
