@@ -4,4 +4,3 @@ packages:
   - packages/api
   - packages/db
   - packages/config/*
-  - packages/components
