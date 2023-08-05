@@ -130,6 +130,9 @@ importers:
       '@acme/api':
         specifier: '*'
         version: link:../../packages/api
+      '@acme/components':
+        specifier: '@acme/components:*'
+        version: link:@acme/components:*
       '@acme/db':
         specifier: '*'
         version: link:../../packages/db
