@@ -45,6 +45,4 @@ yarn-error.log*
 
 # turbo
 .turbo
-
-#ide
-.idea
+.idea/workspace.xml
