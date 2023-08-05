@@ -1,5 +1,5 @@
 // src/pages/_app.tsx
-import "../styles/globals.css";
+import "@acme/components/src/styles/globals.css";
 import type {AppType} from "next/app";
 import {ClerkProvider, useAuth, UserButton} from "@clerk/nextjs";
 import {trpc} from "../utils/trpc";
