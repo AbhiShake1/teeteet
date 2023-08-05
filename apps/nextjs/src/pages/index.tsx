@@ -1,7 +1,7 @@
 import type {NextPage} from "next";
 import Head from "next/head";
 import React, {useEffect, useState} from "react";
-import {CreateAccountForm} from "../components/forms/CreateAccount";
+import {CreateAccountForm} from "@acme/components";
 
 const Home: NextPage = () => {
     const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
