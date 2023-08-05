@@ -4,11 +4,18 @@ import * as React from "react"
 import {MoonIcon, SunIcon} from "@radix-ui/react-icons"
 import {useTheme} from "next-themes"
 import {Button} from "./ui/button";
+import {DetailedHTMLProps, FunctionComponent, HTMLAttributes} from "react";
 
-export function TDarkModeToggle() {
+type Props = FunctionComponent<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
+
+export const TDarkModeToggle: Props = ({...props}) => {
     const {theme} = useTheme()
 
-    return theme == 'dark' ? <LightModeToggle/> : <DarkModeToggle/>
+    return (
+        <div {...props}>
+            {theme == 'dark' ? <LightModeToggle/> : <DarkModeToggle/>}
+        </div>
+    )
 }
 
 const DarkModeToggle = () => {
@@ -21,6 +28,6 @@ const DarkModeToggle = () => {
 const LightModeToggle = () => {
     const {setTheme} = useTheme()
     return <Button variant='ghost' onClick={() => setTheme('light')}>
-        <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] transition-all"/>
+        <MoonIcon className="h-[1.2rem] w-[1.2rem] transition-all"/>
     </Button>
 }

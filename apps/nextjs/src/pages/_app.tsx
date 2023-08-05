@@ -12,9 +12,9 @@ const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
     return (
         <TThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ClerkProvider {...pageProps}>
-                <nav className='flex flex-row space-x-4 items-center justify-center py-4'>
+                <nav className='flex flex-row space-x-4 items-center justify-center my-4 py-4 mx-8'>
                     <TNavigationMenu/>
-                    <TDarkModeToggle/>
+                    <TDarkModeToggle className='fixed right-16'/>
                 </nav>
                 <Component {...pageProps} />
             </ClerkProvider>
