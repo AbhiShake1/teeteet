@@ -6,12 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="c1d3bc6f-1715-41ec-a2f7-d48be4329d3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/nextjs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/nextjs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/nextjs/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/nextjs/src/pages/_app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/config/tailwind/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/config/tailwind/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,6 +33,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2TXwcDkiHOjsDcxG4Py0Hmd9L00" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,6 +55,13 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/nextjs/src" />
+      <recent name="$PROJECT_DIR$/apps/nextjs/src/components/ui" />
+      <recent name="$PROJECT_DIR$/apps/nextjs/src/components" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="db-push" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -120,10 +140,22 @@
       <updated>1691202810631</updated>
       <workItem from="1691202811896" duration="1192000" />
       <workItem from="1691205677929" duration="3513000" />
+      <workItem from="1691226285337" duration="6850000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
 </project>
