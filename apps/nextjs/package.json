@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "with-env": "dotenv -e ../../.env --",
-    "dev": "pnpm with-env next dev",
     "build": "next build",
     "clean": "rm -rf .next .turbo node_modules",
-    "start": "next start",
+    "dev": "pnpm with-env next dev",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "start": "next start",
+    "type-check": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@acme/api": "*",
