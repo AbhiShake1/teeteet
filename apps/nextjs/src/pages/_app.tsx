@@ -2,7 +2,7 @@
 import "@acme/components/src/styles/globals.css";
 import type {AppType} from "next/app";
 import {ClerkProvider, useAuth, UserButton} from "@clerk/nextjs";
-import {trpc} from "../utils/trpc";
+import {api} from "../utils/trpc";
 import React from "react";
 import {useTheme} from "next-themes"
 import {dark} from '@clerk/themes';
@@ -48,4 +48,4 @@ const TNavBar = () => {
     )
 }
 
-export default trpc.withTRPC(MyApp);
+export default api.withTRPC(MyApp);
