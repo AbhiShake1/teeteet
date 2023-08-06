@@ -48,3 +48,5 @@ yarn-error.log*
 
 #ide
 .idea/
+apps/expo/app.config.ts
+apps/nextjs/src/utils/constants.ts
