@@ -1,17 +1,13 @@
-"use client"
-
 import * as React from "react"
 import Link from "next/link"
+import {cn} from "@acme/utils";
 import {
     NavigationMenu,
     NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
+    NavigationMenuItem, NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle
-} from "./ui/navigation-menu";
-import {cn} from "../lib/utils";
+    NavigationMenuTrigger, navigationMenuTriggerStyle
+} from "./ui";
 
 export function TNavigationMenu() {
     return (

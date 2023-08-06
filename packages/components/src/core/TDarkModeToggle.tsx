@@ -2,7 +2,7 @@ import * as React from "react"
 import {MoonIcon, SunIcon} from "@radix-ui/react-icons"
 import {useTheme} from "next-themes"
 import {DetailedHTMLProps, FunctionComponent, HTMLAttributes} from "react";
-import {Button} from "./ui/button";
+import {Button} from "./ui";
 
 type Props = FunctionComponent<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
 

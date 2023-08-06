@@ -1,10 +1,5 @@
-"use client"
-
-import {Button} from "../ui/button";
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../ui/card";
-import {Input} from "../ui/input";
-import {Label} from "../ui/label";
 import {Icons} from "../Icons";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Button, Label, Input} from "../ui";
 
 export function CreateAccountForm() {
     return (

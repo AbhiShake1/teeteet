@@ -1,7 +1,6 @@
 packages:
   - apps/expo
   - apps/nextjs
-  - packages/api
-  - packages/db
+  - packages/*
+  - packages/utils
   - packages/config/*
-  - packages/components
