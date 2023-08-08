@@ -46,7 +46,7 @@ const App: React.FunctionComponent<AppProps> = ({children}) => {
             baseTheme: theme == 'dark' ? dark : undefined,
         }}>
             <TNavBar/>
-            <div className='px-32 py-16 font-[lato]'>
+            <div className='font-[lato]'>
                 {children}
             </div>
         </ClerkProvider>
