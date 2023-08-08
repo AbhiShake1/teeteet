@@ -29,7 +29,7 @@ const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
     return (
         <TContextMenu canGoBack={canGoBack} canGoForward={canGoForward} onBack={back} onReload={refresh}
                       onForward={forward}>
-            <TThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                 <App>
                     <Component {...pageProps} />
                 </App>
@@ -60,7 +60,7 @@ const TNavBar = () => {
         <nav className='flex flex-row items-center justify-center my-4 py-4 mx-8'>
             <TNavigationMenu/>
             <div className='fixed right-16'>{isSignedIn && <UserButton/>}</div>
-            <TDarkModeToggle className='fixed right-36'/>
+            {/*<TDarkModeToggle className='fixed right-36'/>*/}
         </nav>
     )
 }
