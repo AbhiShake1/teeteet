@@ -1,6 +1,4 @@
-"use client"
-
-import {Button, Card, CardContent, CardHeader, CardTitle, CreateAccountForm} from "@acme/components";
+import {Button, Card, CardContent, CardHeader, CardTitle} from "@acme/components";
 import type {NextPage} from "next";
 import Head from "next/head";
 import React, {useEffect, useState} from "react";
@@ -37,8 +35,8 @@ const Home: NextPage = () => {
                     </div>
                 </div>
                 <div className='pt-[30vh] w-full flex flex-row'>
-                    <div className='w-[100vw]'/>
-                    <InfoCard/>
+                    <div className='flex-1'/>
+                    <div className='flex-shrink'><InfoCard/></div>
                 </div>
                 {/*{coords?.latitude} {coords?.longitude}*/}
                 {/*<CreateAccountForm/>*/}
@@ -49,16 +47,16 @@ const Home: NextPage = () => {
 
 const InfoCard = () => {
     return (
-        <Card className='w-full'>
+        <Card className='w-full pr-16'>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                    Total Revenue
+
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="text-2xl font-bold">$45,231.89</div>
+                <div className="text-2xl font-bold">1K+</div>
                 <p className="text-xs text-muted-foreground">
-                    +20.1% from last month
+                    Happy customers
                 </p>
             </CardContent>
         </Card>
