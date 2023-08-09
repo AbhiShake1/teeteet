@@ -6,7 +6,15 @@ import {api} from "../utils/trpc";
 import React, {useMemo} from "react";
 import {useTheme} from "next-themes"
 import {dark} from '@clerk/themes';
-import {TThemeProvider, TNavigationMenu, TDarkModeToggle} from "@acme/components";
+import {
+    TThemeProvider,
+    TNavigationMenu,
+    TDarkModeToggle,
+    Card,
+    CardHeader,
+    CardTitle,
+    CardContent
+} from "@acme/components";
 import {TContextMenu} from "@acme/components/src/core/TContextMenu";
 import {useRouter} from 'next/navigation';
 

@@ -2,6 +2,7 @@ import {Button, Card, CardContent, CardHeader, CardTitle} from "@acme/components
 import type {NextPage} from "next";
 import Head from "next/head";
 import React, {useEffect, useState} from "react";
+import {Line, LineChart, ResponsiveContainer} from "recharts"
 
 const Home: NextPage = () => {
     // const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
@@ -45,9 +46,45 @@ const Home: NextPage = () => {
     );
 }
 
+
+const data = [
+    {
+        revenue: 10400,
+        subscription: 240,
+    },
+    {
+        revenue: 14405,
+        subscription: 300,
+    },
+    {
+        revenue: 9400,
+        subscription: 200,
+    },
+    {
+        revenue: 8200,
+        subscription: 278,
+    },
+    {
+        revenue: 7000,
+        subscription: 189,
+    },
+    {
+        revenue: 9600,
+        subscription: 239,
+    },
+    {
+        revenue: 11244,
+        subscription: 278,
+    },
+    {
+        revenue: 26475,
+        subscription: 189,
+    },
+]
+
 const InfoCard = () => {
     return (
-        <Card className='w-full pr-16'>
+        <Card className='w-96'>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
 
@@ -58,6 +95,22 @@ const InfoCard = () => {
                 <p className="text-xs text-muted-foreground">
                     Happy customers
                 </p>
+                <div className="h-[120px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <LineChart
+                            data={data}
+                            margin={{top: 5, right: 10, left: 10, bottom: 0}}
+                        >
+                            <Line
+                                type="monotone"
+                                strokeWidth={2}
+                                dataKey="revenue"
+                                dot={{ r: 0 }}
+                                stroke="hsl(0 72.2% 50.6%)"
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
             </CardContent>
         </Card>
     )
