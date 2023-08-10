@@ -26,18 +26,24 @@ export function TNavigationMenu() {
                             <ListItem href="/cars" title="Latest">
                                 Latest arrivals
                             </ListItem>
-                            <ListItem href="/cars" title="Our recommendations">
+                            <ListItem href="/cars" title="Our Recommendations">
                                 Teeteet's recommendations
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/cars" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            SELL A CAR
-                        </NavigationMenuLink>
-                    </Link>
+                    <NavigationMenuTrigger>SELL A CAR</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                            <ListItem href="/cars" title="Sell Your Car">
+                                Sell your used car at best value
+                            </ListItem>
+                            <ListItem href="/cars" title="Get Resell Value">
+                                Sell your car at the best possible price
+                            </ListItem>
+                        </ul>
+                    </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link href="/cars" legacyBehavior passHref>
