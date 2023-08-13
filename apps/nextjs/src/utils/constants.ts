@@ -1,1 +1,0 @@
-export const NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = 'pk_test_Zmx1ZW50LXNlYWd1bGwtMTkuY2xlcmsuYWNjb3VudHMuZGV2JA'
