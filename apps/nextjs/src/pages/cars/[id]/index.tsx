@@ -8,8 +8,8 @@ interface Props {
 
 export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
     const id = params?.id as string
-    // await server.post.byId.prefetch({id})
-    return {props: {id}, revalidate: oneDay}
+    // await server.car.byId.prefetch({id})
+    return {props: {id, /*trpcState: server.dehydrate()*/}, revalidate: oneDay}
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
