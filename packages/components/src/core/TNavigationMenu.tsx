@@ -17,16 +17,16 @@ export function TNavigationMenu() {
                     <NavigationMenuTrigger>BUY A CAR</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                            <ListItem href="/cars" title="Popular">
+                            <ListItem href="/cars/popular" title="Popular">
                                 Most browsed cars of all time
                             </ListItem>
-                            <ListItem href="/cars" title="Top Rated">
+                            <ListItem href="/cars/top" title="Top Rated">
                                 Best user feedbacks
                             </ListItem>
-                            <ListItem href="/cars" title="Latest">
+                            <ListItem href="/cars/latest" title="Latest">
                                 Latest arrivals
                             </ListItem>
-                            <ListItem href="/cars" title="Our Recommendations">
+                            <ListItem href="/cars/recommenations" title="Our Recommendations">
                                 Teeteet's recommendations
                             </ListItem>
                         </ul>
@@ -36,17 +36,17 @@ export function TNavigationMenu() {
                     <NavigationMenuTrigger>SELL A CAR</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                            <ListItem href="/cars" title="Sell Your Car">
+                            <ListItem href="/cars/sell" title="Sell Your Car">
                                 Sell your used car at best value
                             </ListItem>
-                            <ListItem href="/cars" title="Get Resell Value">
+                            <ListItem href="/cars/resell-value" title="Get Resell Value">
                                 Sell your car at the best possible price
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/cars" legacyBehavior passHref>
+                    <Link href="/cars/finance" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             CAR FINANCE
                         </NavigationMenuLink>
@@ -60,11 +60,12 @@ export function TNavigationMenu() {
 const ListItem = React.forwardRef<
     React.ElementRef<"a">,
     React.ComponentPropsWithoutRef<"a">
->(({className, title, children, ...props}, ref) => {
+>(({className, href = '/', title, children, ...props}, ref) => {
     return (
         <li>
             <NavigationMenuLink asChild>
-                <a
+                <Link
+                    href={href}
                     ref={ref}
                     className={cn(
                         "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -76,7 +77,7 @@ const ListItem = React.forwardRef<
                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                         {children}
                     </p>
-                </a>
+                </Link>
             </NavigationMenuLink>
         </li>
     )

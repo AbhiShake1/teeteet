@@ -4,6 +4,8 @@ import {httpBatchLink, loggerLink} from "@trpc/client";
 import {inferRouterInputs, inferRouterOutputs} from "@trpc/server";
 import type {AppRouter} from "@acme/api";
 import {transformer} from "@acme/api/transformer";
+import {appRouter, createContext} from "@acme/api";
+import {createSSGHelpers} from "@trpc/react-query/ssg"
 
 const getBaseUrl = () => {
     if (typeof window !== "undefined") return ""; // browser should use relative url
@@ -30,6 +32,13 @@ export const api = createTRPCNext<AppRouter>({
     },
     ssr: false,
 });
+
+export const server = createSSGHelpers<AppRouter>({
+    router: appRouter,
+    transformer,
+    // a trade-off i had to make for now. TODO(AbhiShake1): Give auth once i come across the solution
+    ctx: await createContext(undefined),
+})
 
 /**
  * Inference helpers for input types

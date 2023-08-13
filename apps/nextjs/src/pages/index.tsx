@@ -1,10 +1,12 @@
 import {Button, Card, CardContent, CardHeader, CardTitle} from "@acme/components";
 import type {NextPage} from "next";
 import Head from "next/head";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Line, LineChart, ResponsiveContainer} from "recharts"
+import {api} from "../utils/trpc";
 
 const Home: NextPage = () => {
+    api.post.all.useQuery()
     // const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
     //
     // useEffect(() => {
@@ -22,7 +24,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className='flex flex-col items-start px-32 py-16 bg-cover bg-no-repeat mix-blend-difference
-                    bg-[url(https://wallpapercave.com/wp/wp10472052.jpg)]'>
+                    bg-[url(https://wallpapercave.com/wp/wp10472052.jpg)] h-[88vh]'>
                 <div className='max-w-[40vw] space-y-4'>
                     <h3 className="scroll-m-20 text-4xl font-extrabold tracking-wider lg:text-5xl lg:leading-snug leading-snug">
                         Your ultimate destination to find affordable cars!
@@ -35,8 +37,7 @@ const Home: NextPage = () => {
                         <Button size='lg' className='scale-110' variant='outline'>Explore</Button>
                     </div>
                 </div>
-                <div className='pt-[30vh] w-full flex flex-row'>
-                    <div className='flex-1'/>
+                <div className='w-full flex flex-col items-end justify-end'>
                     <div className='flex-shrink'><InfoCard/></div>
                 </div>
                 {/*{coords?.latitude} {coords?.longitude}*/}
@@ -105,7 +106,7 @@ const InfoCard = () => {
                                 type="monotone"
                                 strokeWidth={2}
                                 dataKey="revenue"
-                                dot={{ r: 0 }}
+                                dot={{r: 0}}
                                 stroke="hsl(0 72.2% 50.6%)"
                             />
                         </LineChart>

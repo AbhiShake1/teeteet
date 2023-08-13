@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -15,4 +16,14 @@ model Post {
   id      String @id @default(cuid())
   title   String
   content String
+}
+
+model Car {
+  id           String @id @default(cuid())
+  price        Int
+  color        String
+  mileage      Int
+  model        String
+  manufacturer String
+  year         Int
 }

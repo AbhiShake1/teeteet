@@ -11,6 +11,6 @@
   },
   "aliases": {
     "components": "src/core",
-    "utils": "@acme/utils/src/utils"
+    "utils": "@acme/utils"
   }
 }
