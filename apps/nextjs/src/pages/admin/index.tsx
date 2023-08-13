@@ -1,38 +1,70 @@
 import {api} from "../../utils/trpc";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@acme/components";
-import {FunctionComponent} from "react";
-import {NotFound} from "next/dist/client/components/error";
-import * as React from "react"
-import {ColumnDef} from "@tanstack/react-table"
 import {
     Button,
     Checkbox,
-    DataTable, Dialog, DialogContent, DialogDescription,
-    DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Label, Input
-} from "@acme/components"
+    DataTable,
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    Input,
+    Label,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger
+} from "@acme/components";
+import * as React from "react";
+import {FunctionComponent} from "react";
+import {ColumnDef} from "@tanstack/react-table"
 import {useForm} from "react-hook-form"
 import {ArrowUpDown, Plus} from "lucide-react"
 import {ReloadIcon} from "@radix-ui/react-icons"
+import {Prisma, prisma} from '@acme/db'
+import {GetStaticProps, InferGetStaticPropsType, NextPage} from "next";
+import {oneHour} from "@acme/utils";
 
-const Index = () => {
-    const tablesQuery = api.admin.allTables.useQuery()
+export const getStaticProps: GetStaticProps = async () => {
+    const tableNames = Object.keys(Prisma.ModelName)
+    const tablesPromise = tableNames.map(async (table) => {
+        const {name, fields} = Prisma.dmmf.datamodel.models.find(m => m.name == table)!
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const values = await prisma[name].findMany()
+        return {name, fields, values}
+    })
+    const tables = await Promise.all(tablesPromise)
 
-    if (!tablesQuery.isSuccess) return null
+    return {
+        props: {tables},
+        revalidate: oneHour,
+    }
+}
 
-    const tables = tablesQuery.data
-
+const Index: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({tables}) => {
     return <div className='flex justify-center'>
-        <Tabs defaultValue={tables[0]} className='text-center'>
+        <Tabs defaultValue={tables[0].name} className='text-center'>
             <TabsList>
-                {tables.map(table => (
-                    <TabsTrigger key={table} value={table}>{table}</TabsTrigger>
-                ))}
+                {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    tables.map(({name}) => (
+                        <TabsTrigger key={name} value={name}>{name}</TabsTrigger>
+                    ))
+                }
             </TabsList>
-            {tables.map(table => (
-                <TabsContent key={table} value={table}>
-                    <Table tableName={table}/>
-                </TabsContent>
-            ))}
+            {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                tables.map((table) => (
+                    <TabsContent key={table.name} value={table.name}>
+                        <Table {...table}/>
+                    </TabsContent>
+                ))
+            }
         </Tabs>
     </div>
 }
@@ -58,18 +90,14 @@ const Index = () => {
 // </DropdownMenu>
 
 interface TableProps {
-    tableName: string
+    name: string,
+    fields: Prisma.DMMF.Field[],
+    values: any
 }
 
-const Table: FunctionComponent<TableProps> = ({tableName}) => {
-    const tableDetail = api.admin.getDetail.useQuery(tableName)
+const Table: FunctionComponent<TableProps> = ({name, fields, values}) => {
     const createMutation = api.admin.create.useMutation()
     const form = useForm()
-
-    if (tableDetail.isLoading) return null
-    if (tableDetail.isError) return <NotFound/>
-
-    const {name, fields, values} = tableDetail.data
 
     const cols: ColumnDef<typeof values>[] = [
         {
@@ -145,7 +173,7 @@ const Table: FunctionComponent<TableProps> = ({tableName}) => {
                         </div>
                         <DialogFooter>
                             {!createMutation.isLoading && <Button type="submit" onClick={() => createMutation.mutate({
-                                table: tableName,
+                                table: name,
                                 data: {}
                             })}>Add {name}</Button>}
                             {createMutation.isLoading && <Button disabled>
