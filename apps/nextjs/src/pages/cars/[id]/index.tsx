@@ -1,6 +1,7 @@
 import {NextPage, GetStaticProps, GetStaticPaths} from 'next'
 import {api, server} from "../../../utils/trpc";
 import {oneDay} from "@acme/utils";
+import {prisma} from '@acme/db'
 
 interface Props {
     id: string
