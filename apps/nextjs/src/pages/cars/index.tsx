@@ -1,16 +1,12 @@
-import {NextPage, GetStaticProps} from "next";
-import {prisma, Car} from "@acme/db"
-
-interface Props {
-    cars: Car[]
-}
+import {NextPage, GetStaticProps, InferGetStaticPropsType} from "next";
+import {prisma} from "@acme/db"
 
 export const getStaticProps: GetStaticProps = async () => {
     const cars = await prisma.car.findMany()
     return {props: {cars}}
 }
 
-const Index: NextPage<Props> = ({cars}) => {
+const Index: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({cars}) => {
     return <>{JSON.stringify(cars)}</>
 }
 
