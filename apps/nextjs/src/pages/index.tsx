@@ -3,10 +3,8 @@ import type {NextPage} from "next";
 import Head from "next/head";
 import React from "react";
 import {Line, LineChart, ResponsiveContainer} from "recharts"
-import {api} from "../utils/trpc";
 
 const Home: NextPage = () => {
-    api.post.all.useQuery()
     // const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
     //
     // useEffect(() => {
