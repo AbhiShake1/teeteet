@@ -1,19 +1,19 @@
 import {NextPage, GetStaticProps, GetStaticPaths} from 'next'
 import {oneDay} from "@acme/utils";
-import {prisma, Post} from '@acme/db'
+import {prisma, Car} from '@acme/db'
 
 interface Props {
-    car: Post
+    car: Car
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
     const id = params?.id as string
-    const car = await prisma.post.findUniqueOrThrow({where: {id}})
+    const car = await prisma.car.findUniqueOrThrow({where: {id}})
     return {props: {car}, revalidate: oneDay}
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const posts = await prisma.post.findMany()
+    const posts = await prisma.car.findMany()
     return {paths: posts?.map(({id}) => ({params: {id}})) ?? [], fallback: false}
 }
 
