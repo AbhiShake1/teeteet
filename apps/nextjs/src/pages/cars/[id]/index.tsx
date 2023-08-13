@@ -1,16 +1,16 @@
 import {NextPage, GetStaticProps, GetStaticPaths} from 'next'
-import {api, server} from "../../../utils/trpc";
+import {api} from "../../../utils/trpc";
 import {oneDay} from "@acme/utils";
-import {prisma} from '@acme/db'
+import {prisma, Car} from '@acme/db'
 
 interface Props {
-    id: string
+    car: Car
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
     const id = params?.id as string
-    // await server.car.byId.prefetch({id})
-    return {props: {id, /*trpcState: server.dehydrate()*/}, revalidate: oneDay}
+    const car = await prisma.car.findFirst({where: {id}})
+    return {props: {car: car!}, revalidate: oneDay}
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -18,15 +18,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return {paths: posts?.map(({id}) => ({params: {id}})) ?? [], fallback: false}
 }
 
-const Index: NextPage<Props> = ({id}) => {
-    const posts = api.post.byId.useQuery(id)
-
-    if (!posts.isSuccess) return null
-
+const Index: NextPage<Props> = ({car}) => {
     return <div className='flex flex-col space-y-2 ml-4'>
         <code>hello</code>
         <div>hello</div>
-        <div>{JSON.stringify(posts.data)}</div>
+        <div>{JSON.stringify(car)}</div>
     </div>
 }
 
