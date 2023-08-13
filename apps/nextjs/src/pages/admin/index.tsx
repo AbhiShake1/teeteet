@@ -1,5 +1,5 @@
 import {api} from "../../utils/trpc";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@acme/components";
+// import {Tabs, TabsContent, TabsList, TabsTrigger} from "@acme/components";
 import {FunctionComponent} from "react";
 import {NotFound} from "next/dist/client/components/error";
 import * as React from "react"
@@ -22,18 +22,18 @@ const Index = () => {
     const tables = tablesQuery.data
 
     return <div className='flex justify-center'>
-        <Tabs defaultValue={tables[0]} className='text-center'>
-            <TabsList>
-                {tables.map(table => (
-                    <TabsTrigger key={table} value={table}>{table}</TabsTrigger>
-                ))}
-            </TabsList>
-            {tables.map(table => (
-                <TabsContent key={table} value={table}>
-                    <Table tableName={table}/>
-                </TabsContent>
-            ))}
-        </Tabs>
+        {/*<Tabs defaultValue={tables[0]} className='text-center'>*/}
+        {/*    <TabsList>*/}
+        {/*        {tables.map(table => (*/}
+        {/*            <TabsTrigger key={table} value={table}>{table}</TabsTrigger>*/}
+        {/*        ))}*/}
+        {/*    </TabsList>*/}
+        {/*    {tables.map(table => (*/}
+        {/*        <TabsContent key={table} value={table}>*/}
+        {/*            <Table tableName={table}/>*/}
+        {/*        </TabsContent>*/}
+        {/*    ))}*/}
+        {/*</Tabs>*/}
     </div>
 }
 
