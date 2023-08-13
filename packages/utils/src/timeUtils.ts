@@ -1,5 +1,5 @@
 
-export const hours = (hours: number) => 60 * 60
+export const hours = (hours: number) => 60 * 60 * hours
 export const days = (days: number) => hours(1) * 24 * days
 
 // days
