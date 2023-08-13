@@ -36,7 +36,7 @@ const Home: NextPage = () => {
                     </div>
                 </div>
                 <div className='w-full flex flex-col items-end justify-end'>
-                    <div className='flex-shrink'><InfoCard/></div>
+                    <div className='flex-shrink md:hidden lg:block'><InfoCard/></div>
                 </div>
                 {/*{coords?.latitude} {coords?.longitude}*/}
                 {/*<CreateAccountForm/>*/}
