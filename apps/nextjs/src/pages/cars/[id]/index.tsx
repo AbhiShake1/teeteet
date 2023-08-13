@@ -9,8 +9,8 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const posts = await prisma.car.findMany()
-    return {paths: posts?.map(({id}) => ({params: {id}})) ?? [], fallback: false}
+    const cars = await prisma.car.findMany({select: {id: true}})
+    return {paths: cars.map(({id}) => ({params: {id}})), fallback: false}
 }
 
 const Index: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = ({car}) => {
