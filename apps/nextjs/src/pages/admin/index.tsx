@@ -1,12 +1,12 @@
 import {api} from "../../utils/trpc";
-// import {Tabs, TabsContent, TabsList, TabsTrigger} from "@acme/components";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@acme/components";
 import {FunctionComponent} from "react";
 import {NotFound} from "next/dist/client/components/error";
 import * as React from "react"
 import {ColumnDef} from "@tanstack/react-table"
 import {
     Button,
-    // Checkbox,
+    Checkbox,
     DataTable, Dialog, DialogContent, DialogDescription,
     DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Label, Input
 } from "@acme/components"
@@ -22,18 +22,18 @@ const Index = () => {
     const tables = tablesQuery.data
 
     return <div className='flex justify-center'>
-        {/*<Tabs defaultValue={tables[0]} className='text-center'>*/}
-        {/*    <TabsList>*/}
-        {/*        {tables.map(table => (*/}
-        {/*            <TabsTrigger key={table} value={table}>{table}</TabsTrigger>*/}
-        {/*        ))}*/}
-        {/*    </TabsList>*/}
-        {/*    {tables.map(table => (*/}
-        {/*        <TabsContent key={table} value={table}>*/}
-        {/*            <Table tableName={table}/>*/}
-        {/*        </TabsContent>*/}
-        {/*    ))}*/}
-        {/*</Tabs>*/}
+        <Tabs defaultValue={tables[0]} className='text-center'>
+            <TabsList>
+                {tables.map(table => (
+                    <TabsTrigger key={table} value={table}>{table}</TabsTrigger>
+                ))}
+            </TabsList>
+            {tables.map(table => (
+                <TabsContent key={table} value={table}>
+                    <Table tableName={table}/>
+                </TabsContent>
+            ))}
+        </Tabs>
     </div>
 }
 
@@ -74,19 +74,19 @@ const Table: FunctionComponent<TableProps> = ({tableName}) => {
     const cols: ColumnDef<typeof values>[] = [
         {
             id: "select",
-            header: ({table}) => (<></>
-                // <Checkbox
-                //     checked={table.getIsAllPageRowsSelected()}
-                //     onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                //     aria-label="Select all"
-                // />
+            header: ({table}) => (
+                <Checkbox
+                    checked={table.getIsAllPageRowsSelected()}
+                    onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                    aria-label="Select all"
+                />
             ),
-            cell: ({row}) => (<></>
-                // <Checkbox
-                //     checked={row.getIsSelected()}
-                //     onCheckedChange={(value) => row.toggleSelected(!!value)}
-                //     aria-label="Select row"
-                // />
+            cell: ({row}) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
             ),
             enableSorting: false,
             enableHiding: false,
