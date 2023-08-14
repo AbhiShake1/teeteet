@@ -39,7 +39,11 @@ const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
                       onForward={forward}>
             <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                 <App>
-                    <Component {...pageProps} />
+                    {
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        <Component {...pageProps} />
+                    }
                 </App>
             </TThemeProvider>
         </TContextMenu>
