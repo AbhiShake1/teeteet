@@ -60,7 +60,7 @@ const Index: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({tables
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 tables.map((table) => (
-                    <TabsContent key={table.name} value={table.name}>
+                    <TabsContent key={table.name} value={table.name} className='text-left'>
                         <Table {...table}/>
                     </TabsContent>
                 ))
