@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import {cn} from "@acme/utils";
 import {Button, Input, Label} from "../ui";

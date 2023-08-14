@@ -1,3 +1,5 @@
+"use client"
+
 import {Icons} from "../Icons";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Button, Label, Input} from "../ui";
 
