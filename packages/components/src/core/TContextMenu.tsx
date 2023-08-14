@@ -1,3 +1,5 @@
+"use client"
+
 import {ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuShortcut, ContextMenuTrigger,} from "./ui"
 import {FunctionComponent, ReactNode} from "react";
 

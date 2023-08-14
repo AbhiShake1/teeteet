@@ -4,8 +4,6 @@ import {httpBatchLink, loggerLink} from "@trpc/client";
 import {inferRouterInputs, inferRouterOutputs} from "@trpc/server";
 import type {AppRouter} from "@acme/api";
 import {transformer} from "@acme/api/transformer";
-import {appRouter, createContext} from "@acme/api";
-import {createProxySSGHelpers} from "@trpc/react-query/ssg"
 
 const getBaseUrl = () => {
     if (typeof window !== "undefined") return ""; // browser should use relative url
