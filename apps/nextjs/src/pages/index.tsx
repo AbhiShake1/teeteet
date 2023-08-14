@@ -22,7 +22,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main
-                className='flex flex-col items-start p-16 bg-cover bg-no-repeat mix-blend-difference bg-[url(/bg.png)] h-[88vh]'>
+                className='flex flex-col items-start p-16 bg-cover bg-no-repeat mix-blend-difference bg-[url(/bg.png)] h-[90vh]'>
                 <div className='max-w-[40vw] space-y-4'>
                     <h3 className="scroll-m-20 text-4xl font-extrabold tracking-wide lg:text-5xl lg:leading-snug leading-snug">
                         Your ultimate destination to find affordable cars!
@@ -35,6 +35,7 @@ const Home: NextPage = () => {
                         <Button size='lg' className='scale-110' variant='outline'>Explore</Button>
                     </div>
                 </div>
+                <div className='flex-1'/>
                 <div className='w-full flex flex-col items-end justify-end'>
                     <div className='flex-shrink md:hidden lg:block'><InfoCard/></div>
                 </div>
