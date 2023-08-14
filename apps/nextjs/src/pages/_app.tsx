@@ -17,11 +17,11 @@ import {
 } from "@acme/components";
 import {TContextMenu} from "@acme/components/src/core/TContextMenu";
 import {useRouter} from 'next/navigation';
-import {Victor_Mono} from 'next/font/google'
+import {Lato} from 'next/font/google'
 
-const font = Victor_Mono({
+const font = Lato({
     subsets: ['latin'],
-    weight: "variable"
+    weight: "900"
 })
 
 type AppProps = {
