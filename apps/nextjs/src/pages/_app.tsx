@@ -17,6 +17,12 @@ import {
 } from "@acme/components";
 import {TContextMenu} from "@acme/components/src/core/TContextMenu";
 import {useRouter} from 'next/navigation';
+import {Victor_Mono} from 'next/font/google'
+
+const font = Victor_Mono({
+    subsets: ['latin'],
+    weight: "variable"
+})
 
 type AppProps = {
     children: React.ReactNode
@@ -35,18 +41,20 @@ const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
     }, [])
 
     return (
-        <TContextMenu canGoBack={canGoBack} canGoForward={canGoForward} onBack={back} onReload={refresh}
-                      onForward={forward}>
-            <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-                <App>
-                    {
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
-                        <Component {...pageProps} />
-                    }
-                </App>
-            </TThemeProvider>
-        </TContextMenu>
+        <main className={font.className}>
+            <TContextMenu canGoBack={canGoBack} canGoForward={canGoForward} onBack={back} onReload={refresh}
+                          onForward={forward}>
+                <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+                    <App>
+                        {
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-ignore
+                            <Component {...pageProps} />
+                        }
+                    </App>
+                </TThemeProvider>
+            </TContextMenu>
+        </main>
     );
 }
 
@@ -58,9 +66,7 @@ const App: React.FunctionComponent<AppProps> = ({children}) => {
             baseTheme: theme == 'dark' ? dark : undefined,
         }}>
             <TNavBar/>
-            <div className='font-[lato]'>
-                {children}
-            </div>
+            {children}
         </ClerkProvider>
     )
 }
