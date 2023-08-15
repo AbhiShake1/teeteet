@@ -4,6 +4,7 @@ import {Metadata} from "next";
 
 export const metadata: Metadata = {
     title: 'TeeTeet',
+    description: 'TeeTeet Buy, Sell, Resell, Car',
 }
 
 const Index = async () => {

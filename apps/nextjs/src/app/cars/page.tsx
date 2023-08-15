@@ -6,6 +6,7 @@ import {Metadata} from "next";
 
 export const metadata: Metadata = {
     title: 'Cars',
+    description: 'Cars',
 }
 
 export const revalidate = oneDay
