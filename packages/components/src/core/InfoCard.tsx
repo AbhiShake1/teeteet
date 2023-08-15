@@ -57,13 +57,14 @@ export const InfoCard = () => {
                             data={data}
                             margin={{top: 5, right: 10, left: 10, bottom: 0}}
                         >
-                            <Line
-                                type="monotone"
-                                strokeWidth={2}
-                                dataKey="revenue"
-                                dot={{r: 0}}
-                                stroke="hsl(0 72.2% 50.6%)"
-                            />
+                            {/*<Line*/}
+                            {/*    // isAnimationActive={false}*/}
+                            {/*    type="monotone"*/}
+                            {/*    strokeWidth={2}*/}
+                            {/*    dataKey="revenue"*/}
+                            {/*    dot={{r: 0}}*/}
+                            {/*    stroke="hsl(0 72.2% 50.6%)"*/}
+                            {/*/>*/}
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
