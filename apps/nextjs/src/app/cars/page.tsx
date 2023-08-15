@@ -1,3 +1,5 @@
+"use client"
+
 import {NextPage, GetStaticProps, InferGetStaticPropsType} from "next";
 import Link from "next/link"
 import {prisma} from "@acme/db"
@@ -9,7 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return {props: {cars}, revalidate: oneDay}
 }
 
-const Index: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({cars}) => {
+const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({cars}) => {
     return <div className='flex flex-col justify-center space-y-4'>
         {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -25,4 +27,4 @@ const Index: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({cars})
     </div>
 }
 
-export default Index;
+export default Page;

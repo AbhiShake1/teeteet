@@ -1,3 +1,5 @@
+"use client"
+
 import { NextPage, GetStaticProps } from "next";
 
 interface Props {
@@ -8,8 +10,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     return { props: { title: 'Finance' } }
 }
 
-const Index: NextPage<Props> = ({title}) => {
+const Page: NextPage<Props> = ({title}) => {
     return <>{title}</>
 }
 
-export default Index;
+export default Page;

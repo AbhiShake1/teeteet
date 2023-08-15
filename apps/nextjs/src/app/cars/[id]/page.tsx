@@ -1,3 +1,5 @@
+"use client"
+
 import {NextPage, GetStaticProps, GetStaticPaths, InferGetServerSidePropsType} from 'next'
 import {oneDay} from "@acme/utils";
 import {prisma} from '@acme/db'
@@ -13,7 +15,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return {paths: cars.map(({id}) => ({params: {id}})), fallback: false}
 }
 
-const Index: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = ({car}) => {
+const Page: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = ({car}) => {
     return <div className='flex flex-col space-y-2 ml-4'>
         <code>hello</code>
         <div>hello</div>
@@ -21,4 +23,4 @@ const Index: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = ({ca
     </div>
 }
 
-export default Index
+export default Page

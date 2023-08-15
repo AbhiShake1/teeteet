@@ -1,6 +1,7 @@
+"use client"
+
 // src/pages/_app.tsx
 import "@acme/components/src/styles/globals.css";
-import type {AppType} from "next/app";
 import {ClerkProvider, useAuth, UserButton} from "@clerk/nextjs";
 import {api} from "../utils/trpc";
 import React, {useMemo} from "react";
@@ -18,6 +19,7 @@ import {
 import {TContextMenu} from "@acme/components/src/core/TContextMenu";
 import {useRouter} from 'next/navigation';
 import {Lato} from 'next/font/google'
+import {NextPage} from "next";
 
 const font = Lato({
     subsets: ['latin'],
@@ -28,7 +30,7 @@ type AppProps = {
     children: React.ReactNode
 }
 
-const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
+const RootLayout: NextPage<AppProps> = ({children}) => {
     const {back, forward, refresh} = useRouter()
     const canGoBack = useMemo(() => {
         if (typeof window == 'undefined') return false
@@ -46,11 +48,7 @@ const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
                           onForward={forward}>
                 <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                     <App>
-                        {
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-ignore
-                            <Component {...pageProps} />
-                        }
+                        {children}
                     </App>
                 </TThemeProvider>
             </TContextMenu>
@@ -60,6 +58,13 @@ const MyApp: AppType = ({Component, pageProps: {...pageProps}}) => {
 
 const App: React.FunctionComponent<AppProps> = ({children}) => {
     const {theme} = useTheme()
+
+    return (
+        <>
+            <TNavBar/>
+            {children}
+        </>
+    )
 
     return (
         <ClerkProvider appearance={{
@@ -72,7 +77,8 @@ const App: React.FunctionComponent<AppProps> = ({children}) => {
 }
 
 const TNavBar = () => {
-    const {isSignedIn} = useAuth()
+    // const {isSignedIn} = useAuth()
+    const isSignedIn = false
 
     return (
         <nav className='flex flex-row items-center justify-center my-4 py-4 mx-8'>
@@ -83,4 +89,4 @@ const TNavBar = () => {
     )
 }
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(RootLayout);

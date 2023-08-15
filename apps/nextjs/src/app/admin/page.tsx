@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }
 }
 
-const Index: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({tables}) => {
+const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({tables}) => {
     return <div className='flex justify-center'>
         <Tabs defaultValue={tables[0].name} className='text-center'>
             <TabsList>
@@ -192,4 +192,4 @@ const Table: FunctionComponent<TableProps> = ({name, fields, values}) => {
     </div>
 }
 
-export default Index;
+export default Page;

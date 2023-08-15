@@ -1,3 +1,5 @@
+"use client"
+
 import {Button, Card, CardContent, CardHeader, CardTitle} from "@acme/components";
 import type {NextPage} from "next";
 import Head from "next/head";
