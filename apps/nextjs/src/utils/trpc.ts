@@ -1,4 +1,5 @@
-// src/utils/trpc.ts
+"use client"
+
 import {createTRPCNext} from "@trpc/next";
 import {httpBatchLink, loggerLink} from "@trpc/client";
 import {inferRouterInputs, inferRouterOutputs} from "@trpc/server";
