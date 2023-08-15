@@ -1,17 +1,14 @@
 "use client"
 
-import {NextPage, GetStaticProps, InferGetStaticPropsType} from "next";
 import Link from "next/link"
 import {prisma} from "@acme/db"
 import {oneDay} from "@acme/utils";
 import {Button} from "@acme/components";
 
-export const getStaticProps: GetStaticProps = async () => {
-    const cars = await prisma.car.findMany()
-    return {props: {cars}, revalidate: oneDay}
-}
+export const revalidate = oneDay
 
-const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({cars}) => {
+const Page = async () => {
+    const cars = await prisma.car.findMany()
     return <div className='flex flex-col justify-center space-y-4'>
         {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
