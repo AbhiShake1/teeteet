@@ -1,4 +1,4 @@
-import {oneDay} from "@acme/utils";
+import {threeDays} from "@acme/utils";
 import {prisma} from '@acme/db'
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
     }
 }
 
-export const revalidate = oneDay
+export const revalidate = threeDays
 
 export const generateStaticParams = async () => {
     const cars = await prisma.car.findMany({select: {id: true}})
