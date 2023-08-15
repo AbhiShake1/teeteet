@@ -24,10 +24,11 @@ import {useForm} from "react-hook-form"
 import {ArrowUpDown, Plus} from "lucide-react"
 import {ReloadIcon} from "@radix-ui/react-icons"
 import {Prisma, prisma} from '@acme/db'
-import {GetStaticProps, InferGetStaticPropsType, NextPage} from "next";
 import {oneHour} from "@acme/utils";
 
-export const getStaticProps: GetStaticProps = async () => {
+export const revalidate = oneHour
+
+const Page = async () => {
     const tableNames = Object.keys(Prisma.ModelName)
     const tablesPromise = tableNames.map(async (table) => {
         const {name, fields} = Prisma.dmmf.datamodel.models.find(m => m.name == table)!
@@ -38,15 +39,8 @@ export const getStaticProps: GetStaticProps = async () => {
     })
     const tables = await Promise.all(tablesPromise)
 
-    return {
-        props: {tables},
-        revalidate: oneHour,
-    }
-}
-
-const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({tables}) => {
     return <div className='flex justify-center'>
-        <Tabs defaultValue={tables[0].name} className='text-center'>
+        <Tabs defaultValue={tables[0]?.name} className='text-center'>
             <TabsList>
                 {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
