@@ -1,25 +1,15 @@
 "use client"
 
-// src/pages/_app.tsx
 import "@acme/components/src/styles/globals.css";
-import {ClerkProvider, useAuth, UserButton} from "@clerk/nextjs";
+import {ClerkProvider, UserButton} from "@clerk/nextjs";
 import {api} from "../utils/trpc";
 import React, {useMemo} from "react";
 import {useTheme} from "next-themes"
 import {dark} from '@clerk/themes';
-import {
-    TThemeProvider,
-    TNavigationMenu,
-    TDarkModeToggle,
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent
-} from "@acme/components";
+import {TNavigationMenu, TThemeProvider} from "@acme/components";
 import {TContextMenu} from "@acme/components/src/core/TContextMenu";
 import {useRouter} from 'next/navigation';
 import {Lato} from 'next/font/google'
-import {NextPage} from "next";
 
 const font = Lato({
     subsets: ['latin'],
@@ -30,7 +20,7 @@ type AppProps = {
     children: React.ReactNode
 }
 
-const RootLayout: NextPage<AppProps> = ({children}) => {
+const RootLayout: React.FunctionComponent<AppProps> = ({children}) => {
     const {back, forward, refresh} = useRouter()
     const canGoBack = useMemo(() => {
         if (typeof window == 'undefined') return false
@@ -39,21 +29,23 @@ const RootLayout: NextPage<AppProps> = ({children}) => {
     }, [])
     const canGoForward = useMemo(() => {
         if (typeof window == 'undefined') return false
-        return window.history.length > window.history.state.index + 1
+        return window.history.length > window.history.state?.index + 1
     }, [])
 
     return (
-        <main className={font.className}>
-            <TContextMenu canGoBack={canGoBack} canGoForward={canGoForward} onBack={back} onReload={refresh}
-                          onForward={forward}>
-                <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-                    <App>
-                        {children}
-                    </App>
-                </TThemeProvider>
-            </TContextMenu>
-        </main>
-    );
+        <html lang="en">
+        <body className={font.className}>
+        <TContextMenu canGoBack={canGoBack} canGoForward={canGoForward} onBack={back} onReload={refresh}
+                      onForward={forward}>
+            <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+                <App>
+                    {children}
+                </App>
+            </TThemeProvider>
+        </TContextMenu>
+        </body>
+        </html>
+    )
 }
 
 const App: React.FunctionComponent<AppProps> = ({children}) => {

@@ -20,7 +20,6 @@ import {
 import * as React from "react";
 import {FunctionComponent} from "react";
 import {ColumnDef} from "@tanstack/react-table"
-import {useForm} from "react-hook-form"
 import {ArrowUpDown, Plus} from "lucide-react"
 import {ReloadIcon} from "@radix-ui/react-icons"
 import {Prisma, prisma} from '@acme/db'
@@ -91,7 +90,6 @@ interface TableProps {
 
 const Table: FunctionComponent<TableProps> = ({name, fields, values}) => {
     const createMutation = api.admin.create.useMutation()
-    const form = useForm()
 
     const cols: ColumnDef<typeof values>[] = [
         {
