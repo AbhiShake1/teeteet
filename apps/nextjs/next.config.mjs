@@ -9,7 +9,7 @@ import {PrismaPlugin} from '@prisma/nextjs-monorepo-workaround-plugin'
 
 /** @type {import("next").NextConfig} */
 const config = {
-    reactStrictMode: true,
+    reactStrictMode: false,
     swcMinify: true,
     transpilePackages: ["@acme/api", "@acme/db", "@acme/components"],
     // We already do linting on GH actions
