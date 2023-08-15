@@ -1,21 +1,22 @@
-"use client"
-
-import {NextPage, GetStaticProps, GetStaticPaths, InferGetServerSidePropsType} from 'next'
 import {oneDay} from "@acme/utils";
 import {prisma} from '@acme/db'
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
-    const id = params?.id as string
-    const car = await prisma.car.findUniqueOrThrow({where: {id}})
-    return {props: {car}, revalidate: oneDay}
+interface Props {
+    params: {
+        id: string
+    }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const revalidate = oneDay
+
+export const generateStaticParams = async () => {
     const cars = await prisma.car.findMany({select: {id: true}})
-    return {paths: cars.map(({id}) => ({params: {id}})), fallback: false}
+    return cars.map(({id}) => ({id}))
 }
 
-const Page: NextPage<InferGetServerSidePropsType<typeof getStaticProps>> = ({car}) => {
+const Page = async ({params: {id}}: Props) => {
+    const car = await prisma.car.findUniqueOrThrow({where: {id}})
+
     return <div className='flex flex-col space-y-2 ml-4'>
         <code>hello</code>
         <div>hello</div>
