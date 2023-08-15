@@ -1,4 +1,3 @@
-import withOffline from 'next-offline'
 import {PrismaPlugin} from '@prisma/nextjs-monorepo-workaround-plugin'
 
 // @ts-check
@@ -30,4 +29,4 @@ const config = {
     },
 };
 
-export default withOffline(config);
+export default config;
