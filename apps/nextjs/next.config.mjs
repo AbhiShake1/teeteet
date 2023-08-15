@@ -17,7 +17,7 @@ const config = {
         ignoreDuringBuilds: !!process.env.CI,
     },
     experimental: {
-        typedRoutes: true,
+        // typedRoutes: true,
     },
     webpack: (config, {isServer}) => {
         config.experiments = {...config.experiments, topLevelAwait: true}
