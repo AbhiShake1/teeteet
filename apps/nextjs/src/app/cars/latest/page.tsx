@@ -1,17 +1,5 @@
-"use client"
-
-import { NextPage, GetStaticProps } from "next";
-
-interface Props {
-    title: string
-}
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-    return { props: { title: 'Latest' } }
-}
-
-const Page: NextPage<Props> = ({title}) => {
-    return <>{title}</>
+const Page = () => {
+    return <>Latest</>
 }
 
 export default Page;
