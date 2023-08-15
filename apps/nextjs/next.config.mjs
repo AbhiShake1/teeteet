@@ -18,6 +18,7 @@ const config = {
     },
     experimental: {
         // typedRoutes: true,
+        serverActions: true,
     },
     webpack: (config, {isServer}) => {
         config.experiments = {...config.experiments, topLevelAwait: true}

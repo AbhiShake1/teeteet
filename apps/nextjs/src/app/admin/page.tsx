@@ -1,4 +1,3 @@
-import {api} from "../../utils/trpc";
 import {
     Button,
     Checkbox,
@@ -30,6 +29,7 @@ export const revalidate = oneHour
 const Page = async () => {
     const tableNames = Object.keys(Prisma.ModelName)
     const tablesPromise = tableNames.map(async (table) => {
+        "use server"
         const {name, fields} = Prisma.dmmf.datamodel.models.find(m => m.name == table)!
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -89,7 +89,7 @@ interface TableProps {
 }
 
 const Table: FunctionComponent<TableProps> = ({name, fields, values}) => {
-    const createMutation = api.admin.create.useMutation()
+    // const createMutation = api.admin.create.useMutation()
 
     const cols: ColumnDef<typeof values>[] = [
         {
@@ -164,14 +164,15 @@ const Table: FunctionComponent<TableProps> = ({name, fields, values}) => {
                             }
                         </div>
                         <DialogFooter>
-                            {!createMutation.isLoading && <Button type="submit" onClick={() => createMutation.mutate({
-                                table: name,
-                                data: {}
-                            })}>Add {name}</Button>}
-                            {createMutation.isLoading && <Button disabled>
-                                <ReloadIcon className="mr-2 h-4 w-4 animate-spin"/>
-                                Adding {name}...
-                            </Button>}
+                            <Button type="submit" onClick={() => console.log('submit')}>Add {name}</Button>
+                            {/*{!createMutation.isLoading && <Button type="submit" onClick={() => createMutation.mutate({*/}
+                            {/*    table: name,*/}
+                            {/*    data: {}*/}
+                            {/*})}>Add {name}</Button>}*/}
+                            {/*{createMutation.isLoading && <Button disabled>*/}
+                            {/*    <ReloadIcon className="mr-2 h-4 w-4 animate-spin"/>*/}
+                            {/*    Adding {name}...*/}
+                            {/*</Button>}*/}
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
