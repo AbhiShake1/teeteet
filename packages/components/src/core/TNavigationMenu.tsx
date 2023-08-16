@@ -28,7 +28,7 @@ export function TNavigationMenu() {
                             <ListItem href="/cars/latest" title="Latest">
                                 Latest arrivals
                             </ListItem>
-                            <ListItem href="/cars/recommenations" title="Our Recommendations">
+                            <ListItem href="/cars" title="Our Recommendations">
                                 Teeteet's recommendations
                             </ListItem>
                         </ul>
