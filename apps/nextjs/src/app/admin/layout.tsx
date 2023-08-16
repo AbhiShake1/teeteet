@@ -8,7 +8,7 @@ interface Props {
 
 const AdminLayout = async ({children}: Props) => {
     const tableNames = Object.keys(Prisma.ModelName)
-    const sidebarNavItems = tableNames.map(title => ({title, href: `/admin/${title}`}))
+    const sidebarNavItems = tableNames.sort().map(title => ({title, href: `/admin/${title}`}))
 
     return (
         <>
@@ -19,10 +19,10 @@ const AdminLayout = async ({children}: Props) => {
                         Manage your content here
                     </p>
                 </div>
-                <Separator className="my-6" />
+                <Separator className="my-6"/>
                 <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
                     <aside className="w-1/5">
-                        <SidebarNav items={sidebarNavItems} />
+                        <SidebarNav items={sidebarNavItems}/>
                     </aside>
                     <div className="flex-1 px-8">{children}</div>
                 </div>
