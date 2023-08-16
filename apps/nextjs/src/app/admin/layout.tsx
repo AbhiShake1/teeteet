@@ -1,12 +1,8 @@
-import {ReactNode} from "react";
-import {prisma, Prisma} from "@acme/db";
+import {PropsWithChildren} from "react";
+import {Prisma} from "@acme/db";
 import {Separator, SidebarNav} from "@acme/components";
 
-interface Props {
-    children: ReactNode
-}
-
-const AdminLayout = async ({children}: Props) => {
+const AdminLayout = async ({children}: PropsWithChildren) => {
     const tableNames = Object.keys(Prisma.ModelName)
     const sidebarNavItems = tableNames.sort().map(title => ({title, href: `/admin/${title}`}))
 
