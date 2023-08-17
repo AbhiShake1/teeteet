@@ -12,6 +12,9 @@ const config = {
     reactStrictMode: false,
     swcMinify: true,
     transpilePackages: ["@acme/api", "@acme/db", "@acme/components"],
+    images: {
+        domains: ['cdn.ferrari.com']
+    },
     // We already do linting on GH actions
     eslint: {
         ignoreDuringBuilds: !!process.env.CI,

@@ -6,7 +6,7 @@ import {api} from "../utils/trpc";
 import React, {useMemo} from "react";
 import {useTheme} from "next-themes"
 import {dark} from '@clerk/themes';
-import {TNavigationMenu, TThemeProvider} from "@acme/components";
+import {TCard, TNavigationMenu, TThemeProvider} from "@acme/components";
 import {TContextMenu} from "@acme/components/src/core/TContextMenu";
 import {useRouter} from 'next/navigation';
 import {Lato} from 'next/font/google'
@@ -73,7 +73,8 @@ const TNavBar = () => {
     const isSignedIn = false
 
     return (
-        <nav className='flex flex-row items-center justify-center my-4 py-4 mx-8'>
+        <nav
+            className='flex flex-row items-center justify-center py-4 w-full sticky top-0 z-[999] border-b backdrop-blur-3xl backdrop-blur-[4px] shadow shadow-lg shadow-black'>
             <TNavigationMenu/>
             <div className='fixed right-16'>{isSignedIn && <UserButton/>}</div>
             {/*<TDarkModeToggle className='fixed right-36'/>*/}
