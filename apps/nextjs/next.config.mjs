@@ -13,7 +13,7 @@ const config = {
     swcMinify: true,
     transpilePackages: ["@acme/api", "@acme/db", "@acme/components"],
     images: {
-        domains: ['cdn.ferrari.com']
+        domains: ['cdn.ferrari.com', 'loremflickr.com']
     },
     // We already do linting on GH actions
     eslint: {

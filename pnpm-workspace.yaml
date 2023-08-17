@@ -1,6 +1,10 @@
 packages:
   - apps/expo
   - apps/nextjs
-  - packages/*
+  - packages/api
+  - packages/db
+  - packages/components
   - packages/utils
   - packages/config/*
+  # TODO(AbhiShake1): exclude scripts
+  - packages/scripts

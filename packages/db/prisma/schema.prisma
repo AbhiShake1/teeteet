@@ -25,4 +25,5 @@ model Car {
   model        String
   manufacturer String
   year         Int
+  imageUrl     String
 }

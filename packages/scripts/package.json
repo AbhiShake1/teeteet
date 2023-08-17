@@ -1,0 +1,20 @@
+{
+  "name": "@acme/scripts",
+  "version": "0.1.0",
+  "main": "scripts.ts",
+  "types": "./index.ts",
+  "module": "es2022",
+  "license": "MIT",
+  "scripts": {
+    "run scripts": "tsx scripts.ts"
+  },
+  "dependencies": {
+    "@acme/db": "*",
+    "@faker-js/faker": "^8.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "tsx": "^3.12.7",
+    "typescript": "^4.9.5"
+  }
+}
