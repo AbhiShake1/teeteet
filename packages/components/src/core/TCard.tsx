@@ -5,9 +5,12 @@ import {
     useSpring,
 } from "framer-motion";
 
-import {FunctionComponent, PropsWithChildren} from "react";
+import React, {FunctionComponent, PropsWithChildren} from "react";
+import {cn} from "@acme/utils";
 
-export const TCard: FunctionComponent<PropsWithChildren> = ({children}) => {
+type Props = PropsWithChildren & React.HTMLAttributes<HTMLDivElement>
+
+export const TCard: FunctionComponent<Props> = ({children, className, ...props}) => {
     const mouseX = useSpring(0, {stiffness: 500, damping: 100});
     const mouseY = useSpring(0, {stiffness: 500, damping: 100});
 
@@ -22,8 +25,12 @@ export const TCard: FunctionComponent<PropsWithChildren> = ({children}) => {
 
     return (
         <div
+            {...props}
             onMouseMove={onMouseMove}
-            className="overflow-hidden relative duration-700 border rounded-xl hover:bg-zinc-800/10 group md:gap-8 hover:border-zinc-400/50 border-zinc-600"
+            className={cn(
+                "overflow-hidden relative duration-700 border rounded-xl hover:bg-zinc-800/10 group md:gap-8 hover:border-zinc-400/50 border-zinc-600",
+                className,
+            )}
         >
             <div className="pointer-events-none">
                 <div
