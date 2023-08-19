@@ -1,9 +1,9 @@
 import Link from "next/link"
-import {prisma} from "@acme/db"
 import {oneDay} from "@acme/utils";
 import {GridTileImage, TCard} from "@acme/components";
 import {Metadata} from "next";
 import React from "react";
+import {CarService} from "@acme/api";
 
 export const metadata: Metadata = {
     title: 'Cars',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export const revalidate = oneDay
 
 const Page = async () => {
-    const cars = await prisma.car.findMany()
+    const cars = await CarService.getRecommended()
     return (
         cars.map(({id, model, price, imageUrl}) => (
             <TCard key={id}>
