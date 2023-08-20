@@ -23,11 +23,8 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
         async onIntersect() {
             if (!canLoadMore) return
             const cars = await fetchMore({page: page + 1, search: debouncedSearch})
-            if (cars.length > 0) {
-                setCars(c => [...c, ...cars])
-            } else {
-                setCanLoadMore(false)
-            }
+            if (cars.length == 0) return setCanLoadMore(false)
+            setCars(c => [...c, ...cars])
             setPage(p => p + 1)
         }
     })
