@@ -20,6 +20,7 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const search = useSearchParams().get('model') ?? ''
 
     useEffect(() => {
+        // TODO(AbhiShake1): debounce
         fetchMore({page: 1, search}).then(cars => {
             if (cars.length > 0) {
                 setCars(cars)
