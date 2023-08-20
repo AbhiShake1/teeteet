@@ -1,6 +1,6 @@
 "use client"
 
-import React, {FunctionComponent, useEffect, useState} from "react";
+import React, {FunctionComponent, useLayoutEffect, useState} from "react";
 import {GridTileImage, TCard} from "@acme/components";
 import Link from "next/link";
 import {PaginatedRequest} from "@acme/api";
@@ -17,17 +17,20 @@ type Props = {
 // @ts-ignore
 export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
+    const [isFirstRender, setIsFirstRender] = useState(true)
+    const [page, setPage] = useState(1)
 
     const search = useSearchParams().get('model') ?? ''
     const [debouncedSearch] = useDebouncedValue(search)
 
-    useEffect(() => {
-        fetchMore({search: debouncedSearch}).then(cars => {
+    useLayoutEffect(() => {
+        if (isFirstRender) return setIsFirstRender(false)
+        fetchMore({page, search: debouncedSearch}).then(cars => {
             if (cars.length > 0) {
                 setCars(cars)
             }
         })
-    }, [debouncedSearch])
+    }, [debouncedSearch, page])
 
     return (
         cars.map(({id, model, price, imageUrl}) => (
