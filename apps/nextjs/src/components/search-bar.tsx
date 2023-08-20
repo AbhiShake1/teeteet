@@ -17,7 +17,7 @@ export function SearchBar() {
     }
 
     return (
-        <Input placeholder='Search...' onChange={e => setSearchParams(e.target.value)}
+        <Input placeholder='Search by Model' onChange={e => setSearchParams(e.target.value)}
                className='max-w-xs bg-transparent backdrop-blur-3xl'/>
     )
 }
