@@ -7,8 +7,9 @@ type Options = ConstructorParameters<typeof IntersectionObserver>[1] & {
 }
 
 export function useIntersection<T extends HTMLElement>(
-    options?: Options
+    {threshold = .2, ...options}: Options = {}
 ) {
+    const _options = {...options, threshold}
     const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
 
     const observer = useRef<IntersectionObserver | null>();
@@ -24,16 +25,16 @@ export function useIntersection<T extends HTMLElement>(
 
             observer.current = new IntersectionObserver(([_entry]) => {
                 setEntry(_entry ?? null)
-            }, options)
+            }, _options)
 
             observer.current.observe(element)
         },
-        [options?.rootMargin, options?.root, options?.threshold]
+        [_options.rootMargin, _options.root, _options.threshold]
     )
 
     useLayoutEffect(() => {
         if (entry?.isIntersecting) {
-            options?.onIntersect?.call(undefined)
+            _options.onIntersect?.call(undefined)
         }
     }, [entry?.isIntersecting])
 

@@ -19,7 +19,6 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
     const [page, setPage] = useState(1)
     const {ref} = useIntersection({
-        threshold: .2,
         onIntersect() {
             fetchMore({page: page + 1, search: debouncedSearch}).then(cars => {
                 if (cars.length > 0) {
