@@ -18,7 +18,7 @@ model Post {
 }
 
 model Car {
-  id           String @id @default(cuid())
+  id           String   @id @default(cuid())
   price        Int
   color        String
   mileage      Int
@@ -26,4 +26,5 @@ model Car {
   manufacturer String
   year         Int
   imageUrl     String
+  createdOn    DateTime @default(now())
 }
