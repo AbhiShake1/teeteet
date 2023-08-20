@@ -22,7 +22,7 @@ export async function getRecommendedCars({page = 1, search = ''}: PaginatedReque
             }
         },
         skip: page - 1,
-        take: 15,
+        take: 12,
     })
 }
 
