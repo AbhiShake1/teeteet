@@ -19,6 +19,10 @@ export class CarService {
 
     //TODO(AbhiShake1): Add createdOn to db
     static getLatest() {
-        return prisma.car.findMany()
+        return prisma.car.findMany({
+            orderBy: {
+                createdOn: 'desc'
+            }
+        })
     }
 }
