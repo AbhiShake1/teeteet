@@ -1,12 +1,12 @@
 "use client"
 
-import React, {FunctionComponent, useLayoutEffect, useState} from "react";
+import React, {FunctionComponent, useState} from "react";
 import {CarLoadingSkeleton, GridTileImage, TCard} from "@acme/components";
 import Link from "next/link";
 import {PaginatedRequest} from "@acme/api";
 import {Car} from '@acme/db'
 import {useSearchParams} from "next/navigation";
-import {useDebouncedValue, useIntersection} from "@acme/hooks";
+import {useAfterLayoutEffect, useDebouncedValue, useIntersection} from "@acme/hooks";
 
 type Props = {
     initialCars: Car[]
@@ -17,7 +17,6 @@ type Props = {
 // @ts-ignore
 export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
-    const [isFirstRender, setIsFirstRender] = useState(true)
     const [page, setPage] = useState(1)
     const {ref} = useIntersection({
         threshold: 1,
@@ -34,10 +33,8 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const search = useSearchParams().get('model') ?? ''
     const [debouncedSearch] = useDebouncedValue(search)
 
-    useLayoutEffect(() => {
-        if (isFirstRender) return setIsFirstRender(false)
+    useAfterLayoutEffect(() => {
         fetchMore({search: debouncedSearch}).then(res => {
-            console.log('abhi::' + res.length)
             if (res.length > 0) {
                 setCars(res)
             }
