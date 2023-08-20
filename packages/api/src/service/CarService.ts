@@ -5,11 +5,12 @@ import {prisma} from "@acme/db";
 export interface PaginatedRequest {
     page?: number
     search?: string
+    limit?: number
 }
 
 //TODO(AbhiShake1): Make all these infinite queries
 
-export async function getRecommendedCars({page = 1, search = ''}: PaginatedRequest = {}) {
+export async function getRecommendedCars({page, search = '', limit = 12}: PaginatedRequest = {}) {
     return prisma.car.findMany({
         where: {
             model: {
@@ -21,12 +22,12 @@ export async function getRecommendedCars({page = 1, search = ''}: PaginatedReque
             //     }
             // }
         },
-        skip: page - 1,
-        take: 12,
+        skip: page ? page - 1 : undefined,
+        take: limit,
     })
 }
 
-export async function getTopSellingCars({page = 1, search = ''}: PaginatedRequest = {}) {
+export async function getTopSellingCars({page = 1, search = '', limit = 12}: PaginatedRequest = {}) {
     return prisma.car.findMany({
         where: {
             model: {
@@ -34,11 +35,11 @@ export async function getTopSellingCars({page = 1, search = ''}: PaginatedReques
             },
         },
         skip: page - 1,
-        take: 12,
+        take: limit,
     })
 }
 
-export async function getPopularCars({page = 1, search = ''}: PaginatedRequest = {}) {
+export async function getPopularCars({page = 1, search = '', limit = 12}: PaginatedRequest = {}) {
     return prisma.car.findMany({
         where: {
             model: {
@@ -46,11 +47,11 @@ export async function getPopularCars({page = 1, search = ''}: PaginatedRequest =
             },
         },
         skip: page - 1,
-        take: 12,
+        take: limit,
     })
 }
 
-export async function getLatestCars({page = 1, search = ''}: PaginatedRequest = {}) {
+export async function getLatestCars({page = 1, search = '', limit = 12}: PaginatedRequest = {}) {
     return prisma.car.findMany({
         where: {
             model: {
@@ -58,7 +59,7 @@ export async function getLatestCars({page = 1, search = ''}: PaginatedRequest = 
             },
         },
         skip: page - 1,
-        take: 12,
+        take: limit,
         orderBy: {
             createdOn: 'desc'
         }

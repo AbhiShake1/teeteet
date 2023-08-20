@@ -36,9 +36,10 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
 
     useLayoutEffect(() => {
         if (isFirstRender) return setIsFirstRender(false)
-        fetchMore({page, search: debouncedSearch}).then(cars => {
-            if (cars.length > 0) {
-                setCars(cars)
+        fetchMore({search: debouncedSearch}).then(res => {
+            console.log('abhi::' + res.length)
+            if (res.length > 0) {
+                setCars(res)
             }
         })
     }, [debouncedSearch])
