@@ -4,7 +4,7 @@ import {FilterCard, Input} from "@acme/components";
 export default function CarLayout({children}: PropsWithChildren) {
     return (
         <div className='flex flex-col space-y-4'>
-            <div className='flex flex-row justify-center sticky top-16 z-[999]'>
+            <div className='flex flex-row justify-center sticky top-16 z-[998]'>
                 <Input placeholder='Search...' className='max-w-xs mt-4 bg-transparent backdrop-blur-3xl'/>
             </div>
             <div className='flex flex-row space-x-6 px-8'>
