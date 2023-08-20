@@ -74,7 +74,7 @@ const TNavBar = () => {
 
     return (
         <nav
-            className='flex flex-row items-center justify-center py-4 w-full sticky top-0 z-[999] border-b backdrop-blur-3xl backdrop-blur-[4px] shadow shadow-lg shadow-black'>
+            className='flex flex-row items-center justify-center py-4 w-full sticky top-0 z-[999] border-b backdrop-blur-[4px] shadow-lg shadow-black'>
             <TNavigationMenu/>
             <div className='fixed right-16'>{isSignedIn && <UserButton/>}</div>
             {/*<TDarkModeToggle className='fixed right-36'/>*/}
