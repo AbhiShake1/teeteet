@@ -1,11 +1,12 @@
 import React, {PropsWithChildren} from "react";
-import {FilterCard, Input} from "@acme/components";
+import {FilterCard} from "@acme/components";
+import {SearchBar} from "../../components/search-bar";
 
 export default function CarLayout({children}: PropsWithChildren) {
     return (
         <div className='flex flex-col -mt-12'>
             <div className='flex flex-row justify-center sticky top-24 z-[998]'>
-                <Input placeholder='Search...' className='max-w-xs bg-transparent backdrop-blur-3xl'/>
+                <SearchBar/>
             </div>
             <div className='flex flex-row space-x-6 px-8'>
                 <aside className='flex flex-col space-y-4 pt-8'>
