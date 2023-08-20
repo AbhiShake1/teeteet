@@ -6,7 +6,7 @@ import Link from "next/link";
 import {PaginatedRequest} from "@acme/api";
 import {Car} from '@acme/db'
 import {useSearchParams} from "next/navigation";
-import {useAfterLayoutEffect, useDebouncedValue, useIntersection} from "@acme/hooks";
+import {useAfterLayoutEffect, useDebouncedValue, useIntersection, usePagination} from "@acme/hooks";
 
 type Props = {
     initialCars: Car[]
@@ -17,7 +17,7 @@ type Props = {
 // @ts-ignore
 export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
-    const [page, setPage] = useState(1)
+    const {page, nextPage} = usePagination()
     const [canLoadMore, setCanLoadMore] = useState(true)
     const {ref} = useIntersection({
         async onIntersect() {
@@ -25,7 +25,7 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
             const cars = await fetchMore({page: page + 1, search: debouncedSearch})
             if (cars.length == 0) return setCanLoadMore(false)
             setCars(c => [...c, ...cars])
-            setPage(p => p + 1)
+            nextPage()
         }
     })
 
