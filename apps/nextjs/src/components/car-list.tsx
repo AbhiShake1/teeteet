@@ -3,10 +3,12 @@
 import React, {FunctionComponent, useState} from "react";
 import {GridTileImage, TCard} from "@acme/components";
 import Link from "next/link";
-import {Car} from "@acme/db"
+import {PaginatedRequest} from "@acme/api";
+import {Car} from '@acme/db'
 
 type Props = {
     initialCars: Car[]
+    fetchMore: ({page, search}: PaginatedRequest) => Promise<Car[]>
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

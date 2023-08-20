@@ -1,8 +1,8 @@
 import {oneDay} from "@acme/utils";
 import {Metadata} from "next";
 import React from "react";
-import {CarService} from "@acme/api";
 import {CarList} from "../../components/car-list";
+import {getRecommendedCars} from "@acme/api";
 
 export const metadata: Metadata = {
     title: 'Cars',
@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 export const revalidate = oneDay
 
 const Page = async () => {
-    const cars = await CarService.getRecommended()
+    const cars = await getRecommendedCars()
+
     return (
-        <CarList initialCars={cars}/>
+        <CarList initialCars={cars} fetchMore={getRecommendedCars}/>
     )
 }
 

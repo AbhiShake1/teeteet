@@ -21,8 +21,7 @@ export default function CarLayout({children}: PropsWithChildren) {
                 <FilterCard title='RTO'></FilterCard>
                 <FilterCard title='Colors'></FilterCard>
             </aside>
-            <Separator orientation='vertical' className='h-screen'/>
-            <div className='flex flex-col flex-1 pt-24'>
+            <div className='flex flex-col flex-1 pt-24 border-l pl-8 border-border'>
                 <div className='grid grid-cols-1 gap-16 mx-auto lg:mx-0 md:grid-cols-3'>
                     {children}
                 </div>
