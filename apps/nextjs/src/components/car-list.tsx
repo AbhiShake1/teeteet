@@ -18,11 +18,15 @@ type Props = {
 export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
     const [page, setPage] = useState(1)
+    const [canLoadMore, setCanLoadMore] = useState(true)
     const {ref} = useIntersection({
         onIntersect() {
+            if (!canLoadMore) return
             fetchMore({page: page + 1, search: debouncedSearch}).then(cars => {
                 if (cars.length > 0) {
                     setCars(c => [...c, ...cars])
+                } else {
+                    setCanLoadMore(false)
                 }
             })
             setPage(p => p + 1)
@@ -60,6 +64,6 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
                 </Link>
             </TCard>
         )),
-        <>{Array.from({length: 3}).map((_, i) => (<div ref={ref} key={i}><CarLoadingSkeleton/></div>))}</>
+        canLoadMore && <>{Array.from({length: 3}).map((_, i) => <div ref={ref} key={i}><CarLoadingSkeleton/></div>)}</>,
     ])
 }
