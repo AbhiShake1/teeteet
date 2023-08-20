@@ -11,6 +11,7 @@ export interface PaginatedRequest {
 //TODO(AbhiShake1): Make all these infinite queries
 
 export async function getRecommendedCars({page, search = '', limit = 12}: PaginatedRequest = {}) {
+    console.log(page)
     return prisma.car.findMany({
         where: {
             model: {
@@ -22,7 +23,7 @@ export async function getRecommendedCars({page, search = '', limit = 12}: Pagina
             //     }
             // }
         },
-        skip: page ? page - 1 : undefined,
+        skip: page ? (page * limit) - 1 : undefined,
         take: limit,
     })
 }
