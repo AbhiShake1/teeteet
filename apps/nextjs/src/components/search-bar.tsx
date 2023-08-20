@@ -8,7 +8,13 @@ export function SearchBar() {
     const {replace} = useRouter()
     const path = usePathname()
 
-    const setSearchParams = (search: string) => replace(`${path}?model=${search}`, {scroll: false})
+    const setSearchParams = (search: string) => {
+        let query = ""
+        if (search.length > 0) {
+            query = `?model=${search}`
+        }
+        replace(`${path}${query}`, {scroll: false})
+    }
 
     return (
         <Input placeholder='Search...' onChange={e => setSearchParams(e.target.value)}

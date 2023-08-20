@@ -1,10 +1,11 @@
 "use client"
 
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import {GridTileImage, TCard} from "@acme/components";
 import Link from "next/link";
 import {PaginatedRequest} from "@acme/api";
 import {Car} from '@acme/db'
+import {useSearchParams} from "next/navigation";
 
 type Props = {
     initialCars: Car[]
@@ -13,8 +14,19 @@ type Props = {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export const CarList: FunctionComponent<Props> = ({initialCars}) => {
+export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
+
+    const search = useSearchParams().get('model') ?? ''
+
+    useEffect(() => {
+        fetchMore({page: 1, search}).then(cars => {
+            if (cars.length > 0) {
+                setCars(cars)
+            }
+        })
+    }, [search])
+
     return (
         cars.map(({id, model, price, imageUrl}) => (
             <TCard key={id}>
