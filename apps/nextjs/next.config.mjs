@@ -11,7 +11,7 @@ import {PrismaPlugin} from '@prisma/nextjs-monorepo-workaround-plugin'
 const config = {
     reactStrictMode: false,
     swcMinify: true,
-    transpilePackages: ["@acme/api", "@acme/db", "@acme/components"],
+    transpilePackages: ["@acme/api", "@acme/db", "@acme/components", "@acme/hooks"],
     images: {
         domains: ['cdn.ferrari.com', 'loremflickr.com']
     },

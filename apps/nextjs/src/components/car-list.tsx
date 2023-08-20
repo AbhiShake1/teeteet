@@ -6,6 +6,7 @@ import Link from "next/link";
 import {PaginatedRequest} from "@acme/api";
 import {Car} from '@acme/db'
 import {useSearchParams} from "next/navigation";
+import {useDebouncedValue} from "@acme/hooks";
 
 type Props = {
     initialCars: Car[]
@@ -18,15 +19,15 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
 
     const search = useSearchParams().get('model') ?? ''
+    const [debouncedSearch] = useDebouncedValue(search)
 
     useEffect(() => {
-        // TODO(AbhiShake1): debounce
-        fetchMore({page: 1, search}).then(cars => {
+        fetchMore({search: debouncedSearch}).then(cars => {
             if (cars.length > 0) {
                 setCars(cars)
             }
         })
-    }, [search])
+    }, [debouncedSearch])
 
     return (
         cars.map(({id, model, price, imageUrl}) => (
