@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export const revalidate = oneDay
 
 const Page = async () => {
-    const cars = await getRecommendedCars({page: 1})
+    const cars = await getRecommendedCars()
 
     return (
         <CarList initialCars={cars} fetchMore={getRecommendedCars}/>
