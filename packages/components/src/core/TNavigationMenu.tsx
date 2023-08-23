@@ -10,8 +10,11 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger, navigationMenuTriggerStyle
 } from "./ui";
+import {useSearchParams} from 'next/navigation'
 
 export function TNavigationMenu() {
+    const search = useSearchParams()
+
     return (
         <NavigationMenu>
             <NavigationMenuList>
@@ -19,16 +22,16 @@ export function TNavigationMenu() {
                     <NavigationMenuTrigger>BUY A CAR</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                            <ListItem href="/cars/popular" title="Popular">
+                            <ListItem href={`/cars/popular?${search}`} title="Popular">
                                 Most browsed cars of all time
                             </ListItem>
-                            <ListItem href="/cars/top" title="Top Rated">
+                            <ListItem href={`/cars/top?${search}`} title="Top Rated">
                                 Best user feedbacks
                             </ListItem>
-                            <ListItem href="/cars/latest" title="Latest">
+                            <ListItem href={`/cars/latest?${search}`} title="Latest">
                                 Latest arrivals
                             </ListItem>
-                            <ListItem href="/cars" title="Our Recommendations">
+                            <ListItem href={`/cars?${search}`} title="Our Recommendations">
                                 Teeteet's recommendations
                             </ListItem>
                         </ul>
