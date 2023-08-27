@@ -10,7 +10,7 @@ import {useAfterLayoutEffect, useDebouncedValue, useIntersection, usePagination}
 
 type Props = {
     initialCars: Car[]
-    fetchMore: ({page, search}: PaginatedRequest) => Promise<Car[]>
+    fetchMore: (req: PaginatedRequest) => Promise<Car[]>
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -19,15 +19,6 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const [cars, setCars] = useState(initialCars)
     const {page, nextPage} = usePagination()
     const [canLoadMore, setCanLoadMore] = useState(true)
-    const {ref} = useIntersection({
-        async onIntersect() {
-            if (!canLoadMore) return
-            const cars = await fetchMore({page: page + 1, search: debouncedSearch})
-            if (cars.length == 0) return setCanLoadMore(false)
-            setCars(c => [...c, ...cars])
-            nextPage()
-        }
-    })
 
     const search = useSearchParams().get('model') ?? ''
     const [debouncedSearch] = useDebouncedValue(search)
@@ -39,6 +30,19 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
             }
         })
     }, [debouncedSearch])
+
+    const {ref} = useIntersection({
+        async onIntersect() {
+            if (!canLoadMore) return
+            const cars = await fetchMore({page: page + 1, search: debouncedSearch})
+            if (cars.length == 0) {
+                if (debouncedSearch.length == 0) setCanLoadMore(false)
+                return
+            }
+            setCars(c => [...c, ...cars])
+            nextPage()
+        }
+    })
 
     return ([
         ...cars.map(({id, model, price, imageUrl}) => (
