@@ -24,7 +24,7 @@ export const getRecommendedCars = cache(
                 //     }
                 // }
             },
-            skip: (page * limit) - 1,
+            skip: page == 1 ? undefined : (page * limit) - 1,
             take: limit,
         })
     }
@@ -38,7 +38,7 @@ export const getTopSellingCars = cache(
                     contains: search,
                 },
             },
-            skip: (page * limit) - 1,
+            skip: page == 1 ? undefined : (page * limit) - 1,
             take: limit,
         })
     }
@@ -52,7 +52,7 @@ export const getPopularCars = cache(
                     contains: search,
                 },
             },
-            skip: (page * limit) - 1,
+            skip: page == 1 ? undefined : (page * limit) - 1,
             take: limit,
         })
     }
@@ -66,7 +66,7 @@ export const getLatestCars = cache(
                     contains: search,
                 },
             },
-            skip: (page * limit) - 1,
+            skip: page == 1 ? undefined : (page * limit) - 1,
             take: limit,
             orderBy: {
                 createdOn: 'desc'
