@@ -4,7 +4,7 @@ type Props = {
     initialPage?: number
 }
 
-export function usePagination({initialPage = 1}: Props = {}) {
+export function usePagination({initialPage = 0}: Props = {}) {
     const [page, setPage] = useState(initialPage)
 
     const nextPage = () => setPage(p => p + 1)

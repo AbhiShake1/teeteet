@@ -12,7 +12,7 @@ export interface PaginatedRequest {
 }
 
 export const getRecommendedCars = cache(
-    async ({page = 1, search = '', limit = 12}: PaginatedRequest = {}) => {
+    async ({page = 0, search = '', limit = 12}: PaginatedRequest = {}) => {
         return prisma.car.findMany({
             where: {
                 model: {
@@ -24,49 +24,49 @@ export const getRecommendedCars = cache(
                 //     }
                 // }
             },
-            skip: page == 1 ? undefined : (page * limit) - 1,
+            skip: page * limit,
             take: limit,
         })
     }
 )
 
 export const getTopSellingCars = cache(
-    async ({page = 1, search = '', limit = 12}: PaginatedRequest = {}) => {
+    async ({page = 0, search = '', limit = 12}: PaginatedRequest = {}) => {
         return prisma.car.findMany({
             where: {
                 model: {
                     contains: search,
                 },
             },
-            skip: page == 1 ? undefined : (page * limit) - 1,
+            skip: page * limit,
             take: limit,
         })
     }
 )
 
 export const getPopularCars = cache(
-    async ({page = 1, search = '', limit = 12}: PaginatedRequest = {}) => {
+    async ({page = 0, search = '', limit = 12}: PaginatedRequest = {}) => {
         return prisma.car.findMany({
             where: {
                 model: {
                     contains: search,
                 },
             },
-            skip: page == 1 ? undefined : (page * limit) - 1,
+            skip: page * limit,
             take: limit,
         })
     }
 )
 
 export const getLatestCars = cache(
-    async ({page = 1, search = '', limit = 12}: PaginatedRequest = {}) => {
+    async ({page = 0, search = '', limit = 12}: PaginatedRequest = {}) => {
         return prisma.car.findMany({
             where: {
                 model: {
                     contains: search,
                 },
             },
-            skip: page == 1 ? undefined : (page * limit) - 1,
+            skip: page * limit,
             take: limit,
             orderBy: {
                 createdOn: 'desc'
