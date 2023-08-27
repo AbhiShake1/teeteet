@@ -23,22 +23,19 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     const search = useSearchParams().get('model') ?? ''
     const [debouncedSearch] = useDebouncedValue(search)
 
-    useAfterLayoutEffect(() => {
-        fetchMore({search: debouncedSearch}).then(res => {
-            if (res.length > 0) {
-                setCars(res)
-            }
-        })
+    useAfterLayoutEffect(async () => {
+        setCanLoadMore(true)
+        const res = await fetchMore({search: debouncedSearch})
+        if (res.length > 0) {
+            setCars(res)
+        }
     }, [debouncedSearch])
 
     const {ref} = useIntersection({
         async onIntersect() {
             if (!canLoadMore) return
             const cars = await fetchMore({page: page + 1, search: debouncedSearch})
-            if (cars.length == 0) {
-                if (debouncedSearch.length == 0) setCanLoadMore(false)
-                return
-            }
+            if (cars.length == 0) setCanLoadMore(false)
             setCars(c => [...c, ...cars])
             nextPage()
         }
