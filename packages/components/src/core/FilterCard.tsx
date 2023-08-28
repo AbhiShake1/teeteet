@@ -1,8 +1,8 @@
 "use client"
 
-import React, {useState} from "react";
+import React from "react";
 import {TCard} from "./TCard";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button} from "./ui";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "./ui";
 
 type Props = {
     title: string
@@ -10,7 +10,6 @@ type Props = {
 }
 
 export function FilterCard({title, children}: Props) {
-    const [expanded, setExpanded] = useState(false)
     return (
         <TCard className='px-4 pb-2 text-center'>
             <Accordion type='single' collapsible>

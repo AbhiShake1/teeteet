@@ -9,7 +9,7 @@ export default function CarLayout({children}: PropsWithChildren) {
                 <SearchBar/>
             </div>
             <div className='flex flex-row space-x-6 px-8'>
-                <aside className='flex flex-col space-y-4 pt-8'>
+                <aside className='flex flex-col space-y-4 pt-8 md:hidden lg:block border-r border-border pr-8'>
                     <FilterCard title='Budget'>
                         test
                     </FilterCard>
@@ -26,7 +26,7 @@ export default function CarLayout({children}: PropsWithChildren) {
                     <FilterCard title='RTO'></FilterCard>
                     <FilterCard title='Colors'></FilterCard>
                 </aside>
-                <div className='flex flex-col flex-1 pt-24 border-l pl-8 border-border'>
+                <div className='flex flex-col flex-1 pt-24'>
                     <div className='grid grid-cols-1 gap-16 mx-auto lg:mx-0 md:grid-cols-3'>
                         {children}
                     </div>
