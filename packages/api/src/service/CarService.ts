@@ -74,3 +74,7 @@ export const getLatestCars = cache(
         })
     }
 )
+
+export const getCarDetail = cache(
+    async (id: string) => prisma.car.findUniqueOrThrow({where: {id}})
+)

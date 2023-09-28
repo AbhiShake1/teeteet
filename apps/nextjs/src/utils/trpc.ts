@@ -13,6 +13,10 @@ const getBaseUrl = () => {
     return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
 
+export function bubbleSort(array: number[]) {
+
+}
+
 export const api = createTRPCNext<AppRouter>({
     config() {
         return {

@@ -44,7 +44,7 @@ export const CarList: FunctionComponent<Props> = ({initialCars, fetchMore}) => {
     return ([
         ...cars.map(({id, model, price, imageUrl}) => (
             <TCard key={id}>
-                <Link href={`/cars/${id}`}
+                <Link href={`/car/${id}`}
                       className='relative flex flex-col items-center gap-4 duration-700 group h-[30vh] w-[80vw] lg:w-[30vw]'>
                     <GridTileImage
                         isInteractive
