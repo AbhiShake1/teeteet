@@ -2,7 +2,7 @@ import {prisma} from '@acme/db'
 import {getCarDetail} from "@acme/api";
 import React, {ReactElement} from "react";
 import {threeDays} from "@acme/utils";
-import {Button, GridTileImage, TCard} from "@acme/components";
+import {Button, TCard} from "@acme/components";
 import Image from 'next/image'
 
 interface Props {
