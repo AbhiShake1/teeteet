@@ -1,8 +1,9 @@
 import {prisma} from '@acme/db'
 import {getCarDetail} from "@acme/api";
-import {ReactElement} from "react";
+import React, {ReactElement} from "react";
 import {threeDays} from "@acme/utils";
-import {Button} from "@acme/components";
+import {Button, GridTileImage, TCard} from "@acme/components";
+import Image from 'next/image'
 
 interface Props {
     params: {
@@ -18,20 +19,23 @@ export const generateStaticParams = async () => {
 }
 
 const Page = async ({params: {id}}: Props) => {
-    const car = await getCarDetail(id)
+    const {model, price, imageUrl} = await getCarDetail(id)
 
-    return <div className='flex flex-col space-y-2 mx-4 mt-12'>
+    return <div className='flex flex-col space-y-8 mx-4 mt-12'>
         <div className='flex flex-row justify-between'>
             <h1 className="text-3xl font-extrabold tracking-tight">
-                {car.model}
+                {model}
             </h1>
             <div className='flex flex-row space-x-12'>
                 <h1 className="text-3xl font-extrabold tracking-tight">
-                    Rs.{car.price}
+                    Rs.{price}
                 </h1>
                 <Button variant='secondary'>Calculate EMI</Button>
             </div>
         </div>
+        <TCard>
+            <Image src={imageUrl} alt={model} width={312} height={312}/>
+        </TCard>
     </div>
 }
 
