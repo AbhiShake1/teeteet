@@ -22,7 +22,7 @@ const RootLayout: React.FunctionComponent<AppProps> = ({children}) => {
         <body className={font.className}>
         <AuthProvider>
             <ContextMenuProvider>
-                <TThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+                <TThemeProvider attribute="class" defaultTheme="dark">
                     <NavBar/>
                     {children}
                 </TThemeProvider>

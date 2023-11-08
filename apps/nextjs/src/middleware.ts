@@ -19,6 +19,6 @@ export const config = {
          *
          * This includes images, and requests from TRPC.
          */
-        "/(.*?trpc.*?|(?!static|.*\\..*|_next|favicon.ico).*)",
+        // "/(.*?trpc.*?|(?!static|.*\\..*|_next|favicon.ico).*)",
     ],
 };
